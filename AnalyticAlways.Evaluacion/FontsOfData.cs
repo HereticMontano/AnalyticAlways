@@ -1,25 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Text;
 
 namespace AnalyticAlways.Evaluacion
 {
-   public class FontsOfData
+    public static class FontsOfData
     {
-        private Uri _url;
-        public FontsOfData(Uri url)
+        public static Stream GetCSV(bool desarrollo, Uri uri)
         {
-            _url = url;
-        }
-
-        public Stream GetCSV()
-        {
-            return new FileStream("Stock.csv", FileMode.Open, FileAccess.Read);
-
+            if(desarrollo)
+                return new FileStream("Stock.csv", FileMode.Open, FileAccess.Read);
+            
             var net = new WebClient();
-            var data = net.DownloadData(_url.ToString());
+            var data = net.DownloadData(uri.ToString());
             return new MemoryStream(data);
         }
     }
