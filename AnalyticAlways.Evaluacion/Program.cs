@@ -1,13 +1,10 @@
 ﻿using AnaliticAlways.Repository;
-using AnaliticAlways.Repository.Entity;
-using AnalyticAlways.Evaluacion.Extension;
 using AnalyticAlways.Evaluacion.Helper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
-using System.Diagnostics;
 using System.IO;
-using System.Threading.Tasks;
+using System.Linq;
 
 namespace AnalyticAlways.Evaluacion
 {
@@ -18,11 +15,17 @@ namespace AnalyticAlways.Evaluacion
         private static AnalyticAlwaysContext _db;
         static void Main(string[] args)
         {
+            Configuration();
+            ProcessData();
+        }
+
+        private static void Configuration()
+        {
             var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("app.json");
             _configuration = builder.Build();
-            _db = new AnalyticAlwaysContext();
 
-            ProcessData();
+            var configContext = new DbContextOptionsBuilder<AnalyticAlwaysContext>().UseSqlServer(_configuration.GetConnectionString("Storage"));
+            _db = new AnalyticAlwaysContext(configContext.Options);
         }
 
         private static void ProcessData()
