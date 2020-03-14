@@ -22,9 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="App.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Stock.CSV">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

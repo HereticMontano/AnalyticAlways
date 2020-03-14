@@ -27,7 +27,7 @@ namespace AnalyticAlways.Evaluacion
         {
             Console.WriteLine("Descargando");
             List<Stock> stocks = new List<Stock>();
-            using (var fileCsv = FontsOfData.GetCSV(true, new Uri("https://interview2208.blob.core.windows.net/interview/Stock.CSV?sp=r&st=2020-01-07T06:09:04Z&se=2021-01-07T14:09:04Z&spr=https&sv=2019-02-02&sr=b&sig=A34uhCv1LATDR7XdeDy1OaZSOknZmjXKsf59j05GNfE%3D")))
+            using (var fileCsv = FontsOfData.GetCSV(false, new Uri("https://interview2208.blob.core.windows.net/interview/Stock.CSV?sp=r&st=2020-01-07T06:09:04Z&se=2021-01-07T14:09:04Z&spr=https&sv=2019-02-02&sr=b&sig=A34uhCv1LATDR7XdeDy1OaZSOknZmjXKsf59j05GNfE%3D")))
                 stocks = HelperCSV.GetAllStocks(new StreamReader(fileCsv));
            
             if (stocks.Count > 0)
